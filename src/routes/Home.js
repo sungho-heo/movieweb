@@ -7,6 +7,7 @@ function Home() {
       allMovies {
         id
         title
+        poster_path
       }
     }
   `
@@ -18,13 +19,22 @@ function Home() {
     return <h1>Could not fetch</h1>
   }
   return (
-    <ul>
-      {data.allMovies.map((movie) => (
-        <li key={movie.id}>
-          <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <h1>Movies</h1>
+      <div>
+        {data.allMovies.map((movie) => (
+          <Link to={`/movies/${movie.id}`}>
+            <img
+              key={movie.id}
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+              width='200px'
+              height='200px'
+            />
+          </Link>
+        ))}
+      </div>
+    </div>
   )
 }
 

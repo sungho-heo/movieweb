@@ -6,6 +6,7 @@ const getMovie = gql`
     movie(id: $movieId) {
       id
       title
+      poster_path
     }
   }
 `
@@ -15,6 +16,7 @@ function Movie() {
     variables: {
       movieId: id,
     },
+    fetchPolicy: "cache-and-network",
   })
   if (loading) {
     return <h1>Looking for movie...</h1>
