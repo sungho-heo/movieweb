@@ -7,6 +7,7 @@ const getMovie = gql`
       id
       title
       poster_path
+      isLiked @client  //this is only local field value
     }
   }
 `
@@ -21,7 +22,14 @@ function Movie() {
   if (loading) {
     return <h1>Looking for movie...</h1>
   }
-  return <h1>{data.movie.title}</h1>
+  return (
+    <div>
+      <h1>{data.movie.title}</h1>
+      <div>
+        <button>{data.movie.isLiked ? "💔" : "❤️"}</button>
+      </div>
+    </div>
+  )
 }
 
 export default Movie
