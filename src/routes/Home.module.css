@@ -13,7 +13,6 @@
 
 .movie_title {
   font-size: 40px;
-  color: #fefffe;
 }
 
 .header {
@@ -25,14 +24,14 @@
   border: 2px solid #010100;
 }
 
-img {
+.img {
   width: 200px;
   height: 200px;
   margin-left: 13px;
   margin-bottom: 20px;
 }
 
-img:hover {
+.img:hover {
   transition: transform 0.5s;
   transform: scale(1) translate(0, -5%);
 }
