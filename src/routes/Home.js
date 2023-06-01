@@ -26,7 +26,7 @@ function Home() {
       </div>
       <div className={style.movies}>
         {data.allMovies.map((movie) => (
-          <div key={movie.id} clasName={style.poster}>
+          <div key={movie.id} className={style.poster}>
             <Link to={`/movies/${movie.id}`}>
               <img
                 key={movie.id}
