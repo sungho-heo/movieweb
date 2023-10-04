@@ -1,23 +1,31 @@
-import { gql, useQuery } from "@apollo/client"
-import { Link } from "react-router-dom"
-import style from "./Home.module.css"
+import { gql, useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import style from "./Home.module.css";
 
 function Home() {
+  const [currentPage, setCurrentPage] = useState(1);
   const movies = gql`
-    query getMovies {
-      allMovies {
+    query getMovies($page: Int!) {
+      allMovies(page: $page) {
         id
         title
         poster_path
       }
     }
-  `
-  const { data, loading, error } = useQuery(movies)
+  `;
+  const nextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const { data, loading, error } = useQuery(movies, {
+    variables: { page: 2 }, // 원하는 페이지 번호를 지정합니다.
+  });
   if (loading) {
-    return <strong>Loading..,</strong>
+    return <strong>Loading..,</strong>;
   }
   if (error) {
-    return <h1>Could not fetch</h1>
+    return <h1>Could not fetch</h1>;
   }
   return (
     <div className={style.container}>
@@ -38,8 +46,14 @@ function Home() {
           </div>
         ))}
       </div>
+      <div>
+        <ul>
+          <li>prevPage</li>
+          <li>nextPage</li>
+        </ul>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

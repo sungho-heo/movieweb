@@ -1,6 +1,6 @@
-import { gql, useQuery } from "@apollo/client"
-import { useParams } from "react-router-dom"
-import style from "./Movie.module.css"
+import { gql, useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
+import style from "./Movie.module.css";
 
 const getMovie = gql`
   query getMovie($movieId: ID!) {
@@ -14,9 +14,9 @@ const getMovie = gql`
       isLiked @client
     }
   }
-`
+`;
 function Movie() {
-  const { id } = useParams()
+  const { id } = useParams();
   const {
     data,
     loading,
@@ -26,7 +26,7 @@ function Movie() {
       movieId: id,
     },
     fetchPolicy: "cache-and-network",
-  })
+  });
   const onClick = () => {
     cache.writeFragment({
       id: `Movie:${id}`,
@@ -38,8 +38,8 @@ function Movie() {
       data: {
         isLiked: !data.movie.isLiked,
       },
-    })
-  }
+    });
+  };
   return (
     <div>
       {loading ? (
@@ -57,9 +57,9 @@ function Movie() {
               <h1 className={style.title}>{data.movie.title}</h1>
               <span className={style.icon} onClick={onClick}>
                 {data.movie.isLiked ? (
-                  <i className='fa-solid fa-thumbs-up'></i>
+                  <i className="fa-solid fa-thumbs-up"></i>
                 ) : (
-                  <i className='fa-regular fa-thumbs-up'></i>
+                  <i className="fa-regular fa-thumbs-up"></i>
                 )}
               </span>
             </div>
@@ -67,7 +67,7 @@ function Movie() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default Movie
+export default Movie;
