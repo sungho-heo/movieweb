@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import home from "../img/home.png";
 import style from "./Home.module.css";
 
 function Home() {
@@ -54,6 +55,7 @@ function Home() {
 
   return (
     <div className={style.container}>
+      <img className={style.logo} alt="home" src={home} />
       <div className={style.header}>
         <h1 className={style.movie_title}>Movies</h1>
       </div>

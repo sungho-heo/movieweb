@@ -52,9 +52,11 @@ function Movie() {
               alt={data.movie.title}
               className={style.img}
             />
-            <div className={style.movieinfo}>{data.movie.overview}</div>
             <div className={style.info}>
-              <h1 className={style.title}>{data.movie.title}</h1>
+              <h1 className={style.title}>제목:{data.movie.title}</h1>
+              <span>개봉일:{data.movie.release_date}</span>
+              <div className={style.movieinfo}>{data.movie.overview}</div>
+              <span>평점:{data.movie.vote_average}</span>
               <span className={style.icon} onClick={onClick}>
                 {data.movie.isLiked ? (
                   <i className="fa-solid fa-thumbs-up"></i>
