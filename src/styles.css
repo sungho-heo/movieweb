@@ -7,3 +7,33 @@ body {
   background-color: rgb(32, 32, 32);
   color: #fefffe;
 }
+
+.movie_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding-right: 140px;
+  width: 100%;
+  font-size: 40px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 90px;
+}
+
+.logo:hover {
+  background-color: rgba(5, 39, 66, 1);
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(5, 39, 66, 0.4);
+}

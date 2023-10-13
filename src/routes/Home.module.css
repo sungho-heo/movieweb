@@ -11,19 +11,6 @@
   margin: 50px 50px;
 }
 
-.movie_title {
-  font-size: 40px;
-}
-
-.header {
-  display: flex;
-  background-color: #32363a;
-  width: 50%;
-  justify-content: center;
-  border-radius: 25px;
-  border: 2px solid #010100;
-}
-
 .img {
   width: 200px;
   height: 200px;
@@ -63,10 +50,4 @@
   width: 100%;
   cursor: pointer;
   margin-right: 5px;
-}
-
-.logo {
-  display: flex;
-  width: 150px;
-  height: 150px;
 }
