@@ -9,6 +9,10 @@ const getMovie = gql`
       title
       poster_path
       overview
+      genres {
+        id
+        name
+      }
       release_date
       vote_average
       isLiked @client
@@ -40,6 +44,9 @@ function Movie() {
       },
     });
   };
+  // const array = data.movie.genres.map((a) => a.name);
+  // console.log(...array);
+  // console.log(data.movie.genres);
   return (
     <div>
       {loading ? (
@@ -57,6 +64,16 @@ function Movie() {
               <span>개봉일:{data.movie.release_date}</span>
               <div className={style.movieinfo}>{data.movie.overview}</div>
               <span>평점:{data.movie.vote_average}</span>
+              <span>
+                장르:
+                {data.movie.genres.map((a, i) => {
+                  const alpha = a.name;
+                  if (i === data.movie.genres.length - 1) {
+                    return alpha;
+                  }
+                  return alpha + ",";
+                })}
+              </span>
               <span className={style.icon} onClick={onClick}>
                 {data.movie.isLiked ? (
                   <i className="fa-solid fa-thumbs-up"></i>
