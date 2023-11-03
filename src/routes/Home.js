@@ -49,7 +49,6 @@ function Home() {
   }
 
   if (error) {
-    console.log(error);
     return <h1>Could not fetch</h1>;
   }
 
