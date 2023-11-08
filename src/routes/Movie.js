@@ -15,38 +15,17 @@ const getMovie = gql`
       }
       release_date
       vote_average
-      isLiked @client
     }
   }
 `;
 function Movie() {
   const { id } = useParams();
-  const {
-    data,
-    loading,
-    client: { cache },
-  } = useQuery(getMovie, {
+  const { data, loading } = useQuery(getMovie, {
     variables: {
       movieId: id,
     },
     fetchPolicy: "cache-and-network",
   });
-  const onClick = () => {
-    cache.writeFragment({
-      id: `Movie:${id}`,
-      fragment: gql`
-        fragment ClickFragment on Movie {
-          isLiked
-        }
-      `,
-      data: {
-        isLiked: !data.movie.isLiked,
-      },
-    });
-  };
-  // const array = data.movie.genres.map((a) => a.name);
-  // console.log(...array);
-  // console.log(data.movie.genres);
   return (
     <div>
       {loading ? (
@@ -60,11 +39,18 @@ function Movie() {
               className={style.img}
             />
             <div className={style.info}>
-              <h1 className={style.title}>제목:{data.movie.title}</h1>
-              <span>개봉일:{data.movie.release_date}</span>
+              <h1 className={style.title}>
+                제목:{data.movie.title} ({data.movie.release_date.slice(0, 4)})
+              </h1>
+              <p>줄거리</p>
               <div className={style.movieinfo}>{data.movie.overview}</div>
-              <span>평점:{data.movie.vote_average}</span>
-              <span>
+              <span className={style.movieinfo}>
+                평점:
+                {Math.floor(data.movie.vote_average) === data.movie.vote_average
+                  ? data.movie.vote_average
+                  : data.movie.vote_average.toFixed(2)}
+              </span>
+              <span className={style.genres}>
                 장르:
                 {data.movie.genres.map((a, i) => {
                   const alpha = a.name;
@@ -73,13 +59,6 @@ function Movie() {
                   }
                   return alpha + ",";
                 })}
-              </span>
-              <span className={style.icon} onClick={onClick}>
-                {data.movie.isLiked ? (
-                  <i className="fa-solid fa-thumbs-up"></i>
-                ) : (
-                  <i className="fa-regular fa-thumbs-up"></i>
-                )}
               </span>
             </div>
           </div>
