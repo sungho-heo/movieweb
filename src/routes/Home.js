@@ -16,12 +16,12 @@ function Home() {
     }
   `;
 
-  const pageNumbers = [];
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
     navigate(`/page/${pageNumber}`);
   };
 
+  const pageNumbers = [];
   for (let i = 1; i <= 10; i++) {
     pageNumbers.push(i);
   }
@@ -49,7 +49,7 @@ function Home() {
   }
 
   if (error) {
-    return <h1>Could not fetch</h1>;
+    return <strong>Error : {error.message}</strong>;
   }
 
   return (

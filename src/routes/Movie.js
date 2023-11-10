@@ -20,12 +20,14 @@ const getMovie = gql`
 `;
 function Movie() {
   const { id } = useParams();
-  const { data, loading } = useQuery(getMovie, {
+  const { data, loading, error } = useQuery(getMovie, {
     variables: {
       movieId: id,
     },
-    fetchPolicy: "cache-and-network",
   });
+  if (error) {
+    return <strong>Error: {error.message}</strong>;
+  }
   return (
     <div>
       {loading ? (
