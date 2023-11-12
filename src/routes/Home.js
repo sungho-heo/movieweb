@@ -18,7 +18,7 @@ function Home() {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    navigate(`/page/${pageNumber}`);
+    navigate(`/page/${currentPage}`);
   };
 
   const pageNumbers = [];
