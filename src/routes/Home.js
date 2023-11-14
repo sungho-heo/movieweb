@@ -21,10 +21,9 @@ function Home() {
     navigate(`/page/${currentPage}`);
   };
 
-  const pageNumbers = [];
-  for (let i = 1; i <= 10; i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = Array(10)
+    .fill()
+    .map((_, i) => i + 1);
 
   const prevPage = () => {
     if (currentPage > 1) {
