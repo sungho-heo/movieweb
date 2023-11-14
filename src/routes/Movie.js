@@ -2,29 +2,33 @@ import { gql, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import style from "./Movie.module.css";
 
-const getMovie = gql`
-  query getMovie($movieId: ID!) {
-    movie(id: $movieId) {
-      id
-      title
-      poster_path
-      overview
-      genres {
-        id
-        name
-      }
-      release_date
-      vote_average
-    }
-  }
-`;
 function Movie() {
+  const getMovie = gql`
+    query getMovie($movieId: ID!) {
+      movie(id: $movieId) {
+        id
+        title
+        poster_path
+        overview
+        genres {
+          id
+          name
+        }
+        release_date
+        vote_average
+      }
+    }
+  `;
   const { id } = useParams();
   const { data, loading, error } = useQuery(getMovie, {
     variables: {
       movieId: id,
     },
   });
+  if (loading) {
+    return <strong>Loading...</strong>;
+  }
+
   if (error) {
     return <strong>Error: {error.message}</strong>;
   }
